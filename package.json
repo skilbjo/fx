@@ -1,0 +1,31 @@
+{
+  "name": "fx",
+  "main": "app.js",
+  "version": "0.0.1",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/skilbjo/fx.git"
+  },
+  "engines": {
+    "node": "4.1.1"
+  },
+  "scripts": {
+    "start": "nodemon app.js" 
+    , "run": "nodemon app.js"
+  },
+  "dependencies": {
+    "jsdom": "1.1.0"
+    , "underscore": "1.7.0"
+    , "request": "2.61.0"
+    , "cron": "latest"
+    , "async": "1.4.2"
+  },
+  "devDependencies": {
+    "nodemon": "1.2.1" 
+  },
+  "jshintConfig": {
+    "laxcomma": true
+    , "indent": 1
+  }
+}
