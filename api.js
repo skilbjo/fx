@@ -42,9 +42,11 @@ var transform = function(data, cb){
 	data = data.rates;
 
 	for(var key in data) { if (data.hasOwnProperty(key)){
-		row.push(date,key,h.cross_usd_rate(data[key]));
-		result.push(row);
+		result.push([ date , key , h.cross_usd_rate(data[key]) ]);
+		// result.push(row);
 	}	}
+
+	// result.push(row);
 
 	cb(result);
 };

@@ -12,6 +12,6 @@ var fs = require('fs'),
 
 api.get_latest(function(data){
 	h.database(data,function(result){
-		console.log(result);
+		console.log(data);
 	});
 });
