@@ -2,7 +2,7 @@ var
 	path = require('path'),
 	fs = require('fs'),
 	req = require('request'),
-	api_key = require('./lib/key.js').OPEN_EXCHANGE_RATES_KEY
+	api_key = require('./lib/key.js').OPEN_EXCHANGE_RATES_KEY,
 	dir = './data',
 	h = require('./lib/helper.js'),
 	api_call = require('./lib/result.js')
@@ -22,45 +22,6 @@ var api = {
 	}
 };
 
-var filter = function(data, cb){
-	var result = [];
-
-	data = data.rates;
-
-	for (var key in data) {
-		if (data.hasOwnProperty(key)){
-			result.push({
-				currency: key,
-				rate: data[key]
-			});
-		}
-	};
-
-
-	// data.map(function(item,index){
-	// 	console.log(item);
-	// });
-
-	// data_json = JSON.parse(JSON.stringify(data.rates));
-
-	// data_json.map(function(item,index){
-	// 	console.log(item);
-	// });
-
-
-	// data.map(function(item,index){
-	// 	item = item.rates;
-	// 	item.map(function(rate,index){
-	// 		result.push({
-	// 			currency: rate[index],
-	// 			rate: rate[index]
-	// 		});
-	// 	});
-	// });
-
-	cb(data);
-};
-
 var request = function(url, cb){
 	req(url, function(err,res,body){
 		if(!err && res.statusCode == 200){
@@ -71,15 +32,45 @@ var request = function(url, cb){
 	});
 };
 
-var get_historical = function(date) {
-	return api.base+'historical/'+date+'.json'+api.app_id
-}
+var transform = function(data, cb){
+	data = JSON.parse(data);
 
-// console.log(api_call);
+	var date = h.unix_to_date(data.timestamp),
+		row = [],
+		result = [];
 
-filter(api_call,function(data){
-	console.log(data);
-});
+	data = data.rates;
+
+	for(var key in data) { if (data.hasOwnProperty(key)){
+		row.push(date,key,h.cross_usd_rate(data[key]));
+		result.push(row);
+	}	}
+
+	cb(result);
+};
+
+var get_historical = function(date,cb) {
+	request(api.base+'historical/'+date+'.json'+api.app_id, function(data){
+		transform(data,function(data){
+			cb(data);
+		});
+	});
+};
+
+var get_latest = function(cb){
+	request(api.latest, function(data){
+		transform(data,function(data){
+			cb(data);
+		});
+	});
+};
+
+// var get_historical= ('2007-10-01',function(data){
+// 	console.log(data);
+// });
+
+exports.get_historical = get_historical;
+exports.get_latest = get_latest;
 
 // request(get_historical('2015-01-01'),function(data){
 // 	console.log(data);
