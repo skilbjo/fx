@@ -2,7 +2,7 @@ var
 	path = require('path'),
 	fs = require('fs'),
 	req = require('request'),
-	api_key = require('./lib/key.js').OPEN_EXCHANGE_RATES_KEY,
+	api_key = require('./lib/key.js').OPEN_EXCHANGE_RATES_KEY_2,
 	dir = './data',
 	h = require('./lib/helper.js'),
 	api_call = require('./lib/result.js')
@@ -36,17 +36,13 @@ var transform = function(data, cb){
 	data = JSON.parse(data);
 
 	var date = h.unix_to_date(data.timestamp),
-		row = [],
 		result = [];
 
 	data = data.rates;
 
 	for(var key in data) { if (data.hasOwnProperty(key)){
 		result.push([ date , key , h.cross_usd_rate(data[key]) ]);
-		// result.push(row);
 	}	}
-
-	// result.push(row);
 
 	cb(result);
 };
@@ -67,19 +63,5 @@ var get_latest = function(cb){
 	});
 };
 
-// var get_historical= ('2007-10-01',function(data){
-// 	console.log(data);
-// });
-
 exports.get_historical = get_historical;
 exports.get_latest = get_latest;
-
-// request(get_historical('2015-01-01'),function(data){
-// 	console.log(data);
-// });
-
-// request(get_historical('2015-01-01'),function(json){
-// 	filter(json,function(json){
-// 		console.log(json);
-// 	});
-// });
