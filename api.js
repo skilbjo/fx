@@ -2,7 +2,7 @@ var
 	path = require('path'),
 	fs = require('fs'),
 	req = require('request'),
-	api_key = require('./lib/key.js').OPEN_EXCHANGE_RATES_KEY_2,
+	api_key = require('./lib/key.js').OPEN_EXCHANGE_RATES_KEY_4,
 	dir = './data',
 	h = require('./lib/helper.js'),
 	api_call = require('./lib/result.js')
