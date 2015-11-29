@@ -1,15 +1,18 @@
 #/bin/bash
 
 # Database
+mbp_path="/Users/skilbjo/Code/Node/fx/data"
 db_name="fx"
 file_name="../data/rates_db.sql"
 
 # Prod
-user_name="pi"
+user="pi"
 server="skilbjo.duckdns.org"
-pi_db_path="~/sql/coupon"
-pass="root"
+pi_app_path="~/node/app/fx/data"
+pi_data=$pi_app_path/$file_name
 
-# Export from Pi, send the results back to local
-## this is not working
-ssh $user_name@$server "mysqldump -u root -p $db_name > $file_name"
+# MySQL export on Pi server
+ssh $user@$server "mysqldump -u root -p $db_name > $pi_data"
+
+# Rsync back to local
+rsync -chavzP --stats $user@$server:$pi_data $mbp_path
