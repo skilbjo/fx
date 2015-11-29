@@ -1,0 +1,13 @@
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games"
+MAILTO=john.skilbeck@gmail.com
+FX="/home/pi/node/app/fx"
+CHAN="/home/pi/node/app/4chan/"
+
+### APPS
+## 4chan
+0 */2 * * * cd $CHAN ; node app1.js >/dev/null
+0 12 * * * cd $FX ; node app.js >/dev/null
+
+### SYSADMIN
+* * * * * ping -c 1 192.168.1.1 >/dev/null 2>&1
+*/5 * * * * ~/unix/duckdns/duck.sh >/dev/null 2>&1
