@@ -18,7 +18,7 @@ var generate_dates = function(year, cb){
 	cb(result);
 };
 
-generate_dates(2009,function(arr){
+generate_dates(2015,function(arr){
 	arr.map(function(date,iterator){
 		api.get_historical(date,function(data){
 			h.database(data,function(result){
