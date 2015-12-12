@@ -14,3 +14,27 @@ Historical database of FX data
 - https://openexchangerates.org/quick-start
 - http://fixer.io/
 - http://api.fixer.io/latest?base=USD
+
+
+## SQL Queries
+
+````
+set @currency = 'CAD';
+set @year = 2015;
+
+
+select fx.rates.* from (
+	select 
+		max(rate) max, min(rate) min
+	from
+		fx.rates
+	where
+		currency in (@currency)
+		and year(date) in (@year)
+) max 
+	join fx.rates on 
+		( max = fx.rates.rate or min = fx.rates.rate )
+		and currency in (@currency)
+		and year(date) in (@year)
+````
+
