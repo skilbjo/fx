@@ -1,0 +1,17 @@
+#!/bin/sh
+
+DEPLOYDIR=~/node/app/fx
+
+GIT_WORK_TREE="$DEPLOYDIR" git checkout -f
+cd "$DEPLOYDIR"
+
+npm install
+
+echo "All done ;)"  
+
+
+fx $ git remote -v
+origin	https://github.com/skilbjo/fx.git (fetch)
+origin	https://github.com/skilbjo/fx.git (push)
+pi	ssh://pi@skilbjo.duckdns.org/~/node/fx.git (fetch)
+pi	ssh://pi@skilbjo.duckdns.org/~/node/fx.git (push)
