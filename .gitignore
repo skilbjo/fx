@@ -2,3 +2,4 @@ node_modules
 .DS_Store
 /data
 /lib/key.js
+/lib/database.js
