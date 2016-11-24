@@ -15,12 +15,10 @@
     , "run": "nodemon app.js"
   },
   "dependencies": {
-    "jsdom": "1.1.0"
-    , "underscore": "1.7.0"
+    "underscore": "1.7.0"
     , "request": "2.61.0"
     , "cron": "1.0.9"
     , "async": "1.4.2"
-    , "mysql": "2.9.0"
     , "pg": "4.4.4"
   },
   "devDependencies": {
