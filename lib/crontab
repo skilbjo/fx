@@ -1,0 +1,38 @@
+### variables ##
+  PATH=/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/skilbjo/bin
+  MAILTO=john.skilbeck@gmail.com
+  app_dir="/home/skilbjo/deploy/app/fx"
+
+
+## jobs ##
+5 * * * * skilbjo cd "$app_dir" ; node app.js >/dev/null
+
+
+## syntax ##
+# ┌───────────── min (0 - 59)
+# │ ┌────────────── hour (0 - 23)
+# │ │ ┌─────────────── day of month (1 - 31)
+# │ │ │ ┌──────────────── month (1 - 12)
+# │ │ │ │ ┌───────────────── day of week (0 - 6) (Sunday to Saturday;
+# │ │ │ │ │
+# * * * * *  command to execute
+
+
+## old crontab
+
+#PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games"
+#MAILTO=john.skilbeck@gmail.com
+#FX="/home/pi/node/app/fx"
+#CHAN="/home/pi/node/app/4chan/"
+#PING="/home/pi/node/app/ping"
+
+#### APPS
+#0 */2 * * * cd $CHAN ; node app1.js >/dev/null
+#30 12 * * * cd $FX ; node app.js >/dev/null
+##30 10 * * * cd $PING ; ./ping.sh >/dev/null 2>&1
+
+#### SYSADMIN
+#* * * * * ping -c 1 192.168.1.1 >/dev/null 2>&1
+#*/5 * * * * ~/unix/duckdns/duck.sh >/dev/null 2>&1
+
+
