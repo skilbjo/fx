@@ -5,7 +5,7 @@
 
 
 ## jobs ##
-5 * * * * skilbjo cd "$app_dir" ; node app.js >/dev/null
+30 12 * * * skilbjo cd "$app_dir" ; node app.js >/dev/null
 
 
 ## syntax ##
