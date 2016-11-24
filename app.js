@@ -1,7 +1,7 @@
 var fs = require('fs'),
   path = require('path'),
   api = require('./api.js'),
-  psql = require('.lib/database.js').psql,
+  psql = require('./lib/database.js').psql,
   h = require('./lib/helper.js')
   ;
 
