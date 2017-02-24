@@ -3,3 +3,4 @@ node_modules
 /data
 /lib/key.js
 /lib/database.js
+/sql/rates_db.sql
