@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-CMD="src/duck"
+CMD="node node-src/app.js"
 
 exec $CMD $@
 
