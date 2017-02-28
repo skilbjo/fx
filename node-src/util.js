@@ -1,18 +1,8 @@
-var mysql = require('./database.js').mysql,
-  psql = require('./database.js').psql
+var psql = require('./node-src/database.js').psql
   ;
 
 var sql = 'insert into rates (date, currency, rate) ' +
           'values ($1,$2,$3)';
-
-//var database = function(data, cb){
-  //// console.log(data);
-  //mysql.query(sql, [data], function(err, rows, fields){
-    //if(err){ console.log(rows); throw err; }
-    //console.log('Data has been inserted');
-    //mysql.end();
-  //});
-//};
 
 var database = function(data, cb){
   psql.connect(function(err){
