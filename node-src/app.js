@@ -9,6 +9,6 @@ api.get_latest(function(data){
   util.database(data,function(result){
     setTimeout(function() {
       psql.end();
-    }, 15 * 1000);
+    }, 25 * 1000);
   });
 });
