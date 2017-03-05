@@ -11,6 +11,14 @@ Then uses `python`'s `scikit-learn` library for analysis.
 ## INSTALL
 - `git clone git@github.com:skilbjo/fx.git`
 
+## DEPLOY
+
+    git remote -v
+    pi      ssh://[user]@[host.]:[port]/~/deploy/git/fx.git (fetch)
+    pi      ssh://[user]@[host.]:[port]/~/deploy/git/fx.git (push)
+
+Install a git hook in `~/deploy/git/fx.git/hooks` with the contents of `deploy/bin/post-receive`
+
 ## WORKFLOW
 - generate the dates and make api calls for historical data
 -- in `historical.js`, `generate_dates(2016,function(arr){`, change the year to the desired year, then run with: `node historical.js`
@@ -32,17 +40,17 @@ set @year = 2015;
 
 
 select fx.rates.* from (
-	select 
-		max(rate) max, min(rate) min
-	from
-		fx.rates
-	where
-		currency in (@currency)
-		and year(date) in (@year)
-) max 
-	join fx.rates on 
-		( max = fx.rates.rate or min = fx.rates.rate )
-		and currency in (@currency)
-		and year(date) in (@year)
+  select
+    max(rate) max, min(rate) min
+  from
+    fx.rates
+  where
+    currency in (@currency)
+    and year(date) in (@year)
+) max
+  join fx.rates on
+    ( max = fx.rates.rate or min = fx.rates.rate )
+    and currency in (@currency)
+    and year(date) in (@year)
 ````
 

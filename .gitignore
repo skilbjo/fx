@@ -1,6 +1,1 @@
-node_modules
-.DS_Store
-/data
-/node-src/key.js
-/node-src/database.js
-/sql/rates_db.sql
+sql/rates_db.sql

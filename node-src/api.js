@@ -2,8 +2,7 @@ var
   path = require('path'),
   fs = require('fs'),
   req = require('request'),
-  api_key = require('./node-src/key.js').OPEN_EXCHANGE_RATES_KEY,
-  dir = './data',
+  api_key = process.env.OPEN_EXCHANGE_RATES_KEY,
   util = require('./node-src/util.js')
   ;
 

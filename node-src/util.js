@@ -1,4 +1,6 @@
-var psql = require('./node-src/database.js').psql
+var pg = require('pg'),
+    conString = process.env.DW_URI,
+    psql = new pg.Client(conString)
   ;
 
 var sql = 'insert into rates (date, currency, rate) ' +
@@ -23,6 +25,7 @@ var cross_usd_rate = function(rate) {
   return (1/rate).toFixed(6);
 };
 
+exports.psql = psql;
 exports.unix_to_date = unix_to_date;
 exports.cross_usd_rate = cross_usd_rate;
 exports.database = database;
