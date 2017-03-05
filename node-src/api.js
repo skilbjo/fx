@@ -2,7 +2,7 @@ var
   path = require('path'),
   fs = require('fs'),
   req = require('request'),
-  api_key = process.env.OPEN_EXCHANGE_RATES_KEY,
+  api_key = process.env.open_exchange_key,
   util = require('./util.js')
   ;
 
