@@ -1,5 +1,5 @@
 var pg = require('pg'),
-    conString = process.env.DW_URI,
+    conString = process.env.db_uri,
     psql = new pg.Client(conString)
   ;
 
@@ -11,7 +11,7 @@ var database = function(data, cb){
     data.map(function(item,index){
       psql.query(sql, item, function(err,result){
         if(err) console.log(err);
-        cb(result);
+        cb(result.rows);
       });
     });
   });
