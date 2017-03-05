@@ -3,7 +3,7 @@ var
   fs = require('fs'),
   req = require('request'),
   api_key = process.env.OPEN_EXCHANGE_RATES_KEY,
-  util = require('./node-src/util.js')
+  util = require('./util.js')
   ;
 
 var api = {

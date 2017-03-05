@@ -1,8 +1,8 @@
 var fs = require('fs'),
   path = require('path'),
-  api = require('./node-src/api.js'),
-  psql = require('./node-src/database.js').psql,
-  util = require('./node-src/util.js')
+  api = require('./api.js'),
+  psql = require('./database.js').psql,
+  util = require('./util.js')
   ;
 
 api.get_latest(function(data){

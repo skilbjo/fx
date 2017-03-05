@@ -1,7 +1,7 @@
 var fs = require('fs'),
   path = require('path'),
-  api = require('./node-src/api.js'),
-  util = require('./node-src/util.js')
+  api = require('./api.js'),
+  util = require('./util.js')
   ;
 
 var generate_dates = function(year, cb){
