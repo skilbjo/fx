@@ -11,7 +11,7 @@ var database = function(data, cb){
     data.map(function(item,index){
       psql.query(sql, item, function(err,result){
         if(err) console.log(err);
-        cb(result.rows);
+        cb(result);
       });
     });
   });
