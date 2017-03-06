@@ -1,9 +1,5 @@
 begin;
-  create database fx;
-commit;
-
-begin;
-  create table rates (
+  create table dw.rates (
     date      date,
     currency  text,
     rate      decimal(10,2)

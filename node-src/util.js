@@ -3,7 +3,7 @@ var pg = require('pg'),
     psql = new pg.Client(conString)
   ;
 
-var sql = 'insert into rates (date, currency, rate) ' +
+var sql = 'insert into dw.rates (date, currency, rate) ' +
           'values ($1,$2,$3)';
 
 var database = function(data, cb){
