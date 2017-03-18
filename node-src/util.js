@@ -2,7 +2,7 @@ var pg = require('pg'),
     conString = process.env.db_uri,
     psql = new pg.Client(conString),
     psql_pool = require('pg').Pool,
-    pool = new Pool(conString)
+    pool = new psql_pool(conString)
   ;
 
 var sql = 'insert into dw.rates (date, currency, rate) ' +
