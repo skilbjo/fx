@@ -1,6 +1,8 @@
 var pg = require('pg'),
     conString = process.env.db_uri,
-    psql = new pg.Client(conString)
+    psql = new pg.Client(conString),
+    psql_pool = require('pg').Pool,
+    pool = new Pool(conString)
   ;
 
 var sql = 'insert into dw.rates (date, currency, rate) ' +
@@ -13,6 +15,21 @@ var database = function(data, cb){
         if(err) console.log(err);
         cb(result.rows);
       });
+    });
+  });
+};
+
+var database_pool = function(data, cb){
+  pool.query('select $1::text as name', ['foo'], function(err,result){
+    console.log(result);
+  });
+};
+
+var database_pool_insert = function(data, cb){
+  data.map(function(item,index){
+    pool.query(sql, item, function(err,result){
+      if(err) console.log(err);
+      cb(result.rows);
     });
   });
 };
