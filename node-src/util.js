@@ -46,3 +46,5 @@ exports.psql = psql;
 exports.unix_to_date = unix_to_date;
 exports.cross_usd_rate = cross_usd_rate;
 exports.database = database;
+exports.database_pool = database_pool;
+exports.database_pool_insert = database_pool_insert;

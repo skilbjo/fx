@@ -5,8 +5,8 @@ var fs = require('fs'),
   ;
 
 var generate_dates = function(year, cb){
-  var start = new Date(year+'-01-01'),
-    end = new Date(year+'-12-31'),
+  var start = new Date(year+'-12-05'),
+    end = new Date(year+'-12-07'),
     result = []
     ;
 
@@ -21,7 +21,7 @@ var generate_dates = function(year, cb){
 generate_dates(2016,function(arr){
   arr.map(function(date,iterator){
     api.get_historical(date,function(data){
-      util.database(data,function(result){
+      util.database_pool_insert(data,function(result){
         console.log(result);
       });
     });
