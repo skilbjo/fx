@@ -2,7 +2,8 @@ var pg = require('pg'),
     conString = process.env.db_uri,
     psql = new pg.Client(conString),
     psql_pool = require('pg').Pool,
-    pool = new psql_pool(conString)
+    parse = require('pg-connection-string').parse,
+    pool = new psql_pool(parse(conString))
   ;
 
 var sql = 'insert into dw.rates (date, currency, rate) ' +
@@ -54,6 +55,8 @@ var db_pool_insert = function(data,cb){
 pool.on('error', function (err, client) {
   console.error('idle client error', err.message, err.stack);
 });
+
+console.log(parse(conString));
 
 var unix_to_date = function(unix_timestamp) {
   return new Date(unix_timestamp * 1000).toISOString().slice(0,10);
