@@ -21,7 +21,7 @@ var generate_dates = function(year, cb){
 generate_dates(2016,function(arr){
   arr.map(function(date,iterator){
     api.get_historical(date,function(data){
-      util.database_pool_insert(data,function(result){
+      util.db_pool_insert(data,function(result){
         console.log(result);
       });
     });

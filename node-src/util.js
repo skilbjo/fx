@@ -34,6 +34,20 @@ var database_pool_insert = function(data, cb){
   });
 };
 
+var db_pool_insert = function(data,cb){
+  pool.connect(function(err,client,done){
+    data.map(function(item,index){
+      client.query(sql, item, function(err,result){
+        done(err);
+        if(err) {
+          return console.error('error running query', err);
+        }
+        cb(result.rows);
+      });
+    });
+  });
+};
+
 var unix_to_date = function(unix_timestamp) {
   return new Date(unix_timestamp * 1000).toISOString().slice(0,10);
 };
@@ -48,3 +62,4 @@ exports.cross_usd_rate = cross_usd_rate;
 exports.database = database;
 exports.database_pool = database_pool;
 exports.database_pool_insert = database_pool_insert;
+exports.db_pool_insert = db_pool_insert;
