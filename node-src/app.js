@@ -7,6 +7,6 @@ var fs = require('fs'),
 
 api.get_latest(function(data){
   util.database(data,function(result){
-    console.log(result.rows);
+    console.log(result);
   });
 });

@@ -5,8 +5,8 @@ var fs = require('fs'),
   ;
 
 var generate_dates = function(year, cb){
-  var start = new Date(year+'-12-05'),
-    end = new Date(year+'-12-07'),
+  var start = new Date(year+'-10-01'),
+    end = new Date(year+'-11-30'),
     result = []
     ;
 
@@ -17,11 +17,12 @@ var generate_dates = function(year, cb){
   cb(result);
 };
 
+// ; for a collection of dates
 generate_dates(2016,function(arr){
   arr.map(function(date,iterator){
     api.get_historical(date,function(data){
       util.database(data,function(result){
-        console.log(result.rows);
+        console.log(result);
       });
     });
   });
@@ -29,14 +30,14 @@ generate_dates(2016,function(arr){
 
 // ; for a single date
 // api.get_historical('2007-10-01',function(data){
-//  h.database(data,function(result){
+//  util.database(data,function(result){
 //    console.log(result);
 //  });
 // });
 
 // ; reminder for how to use regularly
 // api.get_latest(function(data){
-//  h.database(data,function(result){
+//  util.database(data,function(result){
 //    console.log(data);
 //  });
 // });
