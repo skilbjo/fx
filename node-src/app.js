@@ -7,8 +7,6 @@ var fs = require('fs'),
 
 api.get_latest(function(data){
   util.database(data,function(result){
-    setTimeout(function() {
-      psql.end();
-    }, 25 * 1000);
+    console.log(result.rows);
   });
 });
