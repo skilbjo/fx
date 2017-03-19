@@ -36,6 +36,9 @@ var database_pool_insert = function(data, cb){
 
 var db_pool_insert = function(data,cb){
   pool.connect(function(err,client,done){
+    if(err) {
+      return console.error('error fetching client from pool', err);
+    }
     data.map(function(item,index){
       client.query(sql, item, function(err,result){
         done(err);
@@ -47,6 +50,10 @@ var db_pool_insert = function(data,cb){
     });
   });
 };
+
+pool.on('error', function (err, client) {
+  console.error('idle client error', err.message, err.stack);
+});
 
 var unix_to_date = function(unix_timestamp) {
   return new Date(unix_timestamp * 1000).toISOString().slice(0,10);
