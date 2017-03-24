@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -eou pipefail
+
+echo "Make sure you are on virtual env"
+# TODO do a virtualenv check
+
+pip install -r requirements.txt
+
+echo "to write requirements back to the file, its"
+echo "pip freeze -l > requirements.txt"
+
+jupyter-notebook python-src/

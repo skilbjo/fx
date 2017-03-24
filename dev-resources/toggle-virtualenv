@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+app=$(basename $(pwd))
+
+# -- setup
+if [[ -z $VIRTUAL_ENV ]]; then
+  export WORKON_HOME=$HOME/.virtualenvs
+  export PROJECT_HOME=$HOME/Devel
+  source_if_exists() {
+      [[ -f $1 ]] && source $1
+  }
+  source_if_exists /usr/local/bin/virtualenvwrapper.sh
+fi
+
+# -- main
+if [[ -z $VIRTUAL_ENV ]]; then                            # are we running in a virtual_env?
+  virtual_env_result=$(lsvirtualenv | grep "$app" || :)
+  if [[ ! -z $virtual_env_result ]]; then                 # is the virtual_env installed?
+    echo "run:"
+    echo "workon $app"
+  else                                                    # install the virtual_env
+    mkvirtualenv --python=$(which python3) "$app"
+    workon "$app"
+  fi
+else
+  echo "run:"
+  echo "deactivate"
+fi
